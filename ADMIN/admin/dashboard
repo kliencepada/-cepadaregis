@@ -1,0 +1,30 @@
+<?php
+session_start();
+include '../config/db.php';
+
+// Check kung naka-login ug admin ba
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'admin') {
+    header("Location: ../index.php");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - Real Estate System</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div style="padding: 20px;">
+        <h2>Welcome, Admin <?php echo $_SESSION['full_name']; ?>!</h2>
+        <a href="add_property.php">Add New Property</a> | 
+        <a href="../auth/logout.php">Logout</a>
+        
+        <hr>
+        <h3>System Overview</h3>
+        <p>Manage real estate property listings, viewing requests, and inquiries here.</p>
+    </div>
+</body>
+</html>
