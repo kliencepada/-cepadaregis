@@ -18,7 +18,12 @@ if (isset($_POST['login'])) {
             $_SESSION['full_name'] = $user['full_name'];
             $_SESSION['role'] = $user['role'];
 
-            header("Location: ../dashboard.php");
+            // Check role para sa saktong redirection
+            if ($user['role'] == 'admin') {
+                header("Location: ../admin/dashboard.php");
+            } else {
+                header("Location: ../dashboard.php");
+            }
             exit();
         } else {
             echo "<script>alert('Invalid password!'); window.location.href='../index.php';</script>";
